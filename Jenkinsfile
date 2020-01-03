@@ -24,5 +24,20 @@ pipeline {
 				deploy adapters: [tomcat7(credentialsId: '98e9cbd9-106c-4efa-8238-9888f9bc8fc3', path: '', url: 'http://localhost:8085')], contextPath: 'happytrip', war: '**/*.war'
 			}
 		}
+		
+		stage('Email Notification')
+		{
+			steps{
+				
+				mail bcc: '', body: '''Hi,
+
+                              Welcome to Jenkins email alert..This is from Happytrip build
+
+                             Thanks ,
+                              Chithra Nair''', cc: '', from: '', replyTo: '', subject: 'Jenkins Alert', to: 'testautomation865@gmail.com'		
+			
+			}
+			
+		}	
 	}
 }
