@@ -44,7 +44,7 @@ pipeline {
 				
 				mail bcc: '', body: '''Hi,
 
-                              Welcome to Jenkins email alert..This is from Happytrip build
+                              Welcome to Jenkins email alert.. Happytrip build is success.
 
                              Thanks ,
                               Chithra Nair''', cc: '', from: '', replyTo: '', subject: 'Jenkins Alert', to: 'testautomation865@gmail.com'		
