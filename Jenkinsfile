@@ -22,9 +22,7 @@ booleanParam(name: 'SonarQube', defaultValue: false, description: 'Code Analysis
 				powershell 'java -version'
 				powershell 'mvn -version'
 				powershell 'mvn clean package'
-				archiveArtifacts 'target/*.war'
-
-
+				
 			}
 		}
 		
