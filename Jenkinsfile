@@ -1,5 +1,12 @@
 pipeline {
 	agent any
+	parameters
+{
+booleanParam(name: 'Release', defaultValue: false, description: 'Will Push code to the Server')
+booleanParam(name: 'SonarQube', defaultValue: false, description: 'Code Analysis')
+}
+	
+
 	stages {
 		stage('Source') { 
 			steps {
@@ -20,6 +27,28 @@ pipeline {
 
 			}
 		}
+		
+		stage('Archive'){
+               steps{
+                           archiveArtifacts 'target/*.war'
+                   }
+                  }
+		
+		
+	stage('Email Notification')
+		{
+			steps{
+				
+				mail bcc: '', body: '''Hi,
+
+                              Welcome to Jenkins email alert.. Happytrip build is success.
+
+                             Thanks ,
+                              Chithra Nair''', cc: '', from: '', replyTo: '', subject: 'Jenkins Alert', to: 'testautomation865@gmail.com'		
+			
+			}
+			
+		}
 		stage ('Deploy To Prod'){
                   input{
                   message "Do you want to proceed for production deployment?"
@@ -38,19 +67,6 @@ pipeline {
 			}
 		}
 		
-		stage('Email Notification')
-		{
-			steps{
-				
-				mail bcc: '', body: '''Hi,
-
-                              Welcome to Jenkins email alert.. Happytrip build is success.
-
-                             Thanks ,
-                              Chithra Nair''', cc: '', from: '', replyTo: '', subject: 'Jenkins Alert', to: 'testautomation865@gmail.com'		
 			
-			}
-			
-		}	
 	}
 }
